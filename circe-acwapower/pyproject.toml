@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "acwa"
+version = "0.1.0"
+description = "Project for ACWA dashboard"
+authors = ["Sergio Arregui <sarregui@fcirce.es>"]
+readme = "README.md"
+packages = [{include = "acwa", from="src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+numpy = "<2.0"
+pandas = "^2.2.2"
+sqlalchemy = "^2.0.30"
+pyyaml = "^6.0.1"
+pydantic = "^2.7.1"
+pandera = "^0.19.3"
+azure-storage-blob = "^12.20.0"
+azure-identity = "^1.16.0"
+pyodbc = "^5.1.0"
+azure-functions = "^1.19.0"
+azure-keyvault = "^4.2.0"
+xlrd = "^2.0.1"
+retry = "^0.9.2"
+scikit-learn = "^1.5.1"
+fpdf2 = "^2.7.9"
+seaborn = "^0.13.2"
+windrose = "^1.9.2"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.4"
+plotly = "^5.22.0"
+# wind-operational-data = {git = "https://github.com/GENER-Circe/Wind_Operational_Data.git", branch = 'develop'}
+wind-operational-data = { file = "wind_operational_data-0.5.9-py3-none-any.whl"}
+ydata-profiling = "^4.8.3"
+sweetviz = "^2.3.1"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.6.0"
+mkdocs-include-markdown-plugin = "^6.0.6"
+mkdocs-mermaid2-plugin = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

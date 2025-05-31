@@ -1,0 +1,32 @@
+
+    CREATE FUNCTION intermediate.extract_timeseries_input_10min
+    (
+        @start_date DATE,
+        @end_date DATE,
+        @signal VARCHAR(MAX)
+    )
+    RETURNS TABLE
+    AS
+    RETURN
+    (
+        SELECT
+            timestamp,  -- Marca de tiempo de cada lectura
+            id_wtg_complete,  -- Identificador completo de la turbina eólica
+            id_wf,
+            CASE @signal
+				WHEN 'Controller Ground Temperature (°C)' THEN controller_groundtemperature
+				WHEN 'Hydraulic Oil Temperature (°C)' THEN hydraulic_oiltemperature
+				WHEN 'Hydraulic Oil Pressure' THEN hydraulic_oilpressure
+				WHEN 'Events Active Alarms' THEN events_activealarms
+				WHEN 'Grid Frequency' THEN grid_frequency
+				WHEN 'Grid Reactive Power Factor Value' THEN grid_settings_reactivepowerfactorvalue
+				WHEN 'Grid Reactive Power Reference Value' THEN grid_settings_reactivepowerreferencevalue
+				WHEN 'System Service State' THEN system_servicestateint
+				WHEN 'Yaw State CW' THEN yaw_yawstatesyawcw_b
+				WHEN 'Maximum Temperature in 10 minutes Generator Bearing 2' THEN gen_bear2_temp_maxvalue10min
+                ELSE NULL
+            END AS value
+        FROM vis.oper_10min
+        WHERE timestamp BETWEEN @start_date AND @end_date
+    )
+    

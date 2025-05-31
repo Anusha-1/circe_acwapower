@@ -1,0 +1,1 @@
+GRANT EXECUTE ON OBJECT::[schema].[function] TO [dev]; 

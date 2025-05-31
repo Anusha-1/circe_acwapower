@@ -1,0 +1,8 @@
+# DO NOT include azure-functions-worker in this file
+# The Python Worker is managed by Azure Functions platform
+# Manually managing azure-functions-worker may cause unexpected issues
+
+azure-functions==1.19.0
+
+wind_operational_data-0.5.9-py3-none-any.whl
+acwa-0.1.0-py3-none-any.whl

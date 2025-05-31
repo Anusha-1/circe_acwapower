@@ -1,0 +1,47 @@
+
+    CREATE FUNCTION intermediate.extract_timeseries_oper_10min
+    (
+        @start_date DATE,
+        @end_date DATE,
+        @signal VARCHAR(MAX)
+    )
+    RETURNS TABLE
+    AS
+    RETURN
+    (
+        SELECT
+            timestamp,  -- Marca de tiempo de cada lectura
+            id_wtg_complete,  -- Identificador completo de la turbina eólica
+            id_wf,
+            CASE @signal
+				WHEN 'Wind Speed (m/s)' THEN wind_speed
+				WHEN 'Power (kW)' THEN power
+				WHEN 'Ambient Temperature (°C)' THEN temperature
+				WHEN 'Wind Direction (°)' THEN wind_direction
+				WHEN 'Nacelle Direction (°)' THEN nacelle_direction
+				WHEN 'Rotor RPM' THEN rotor_rpm
+				WHEN 'Generator RPM' THEN generator_rpm
+				WHEN 'Lambda' THEN lambda_parameter
+				WHEN 'Density (kg/m3)' THEN density
+				WHEN 'Loss (kW)' THEN loss
+				WHEN 'Cp' THEN cp
+				WHEN 'Production Ratio' THEN production_ratio
+				WHEN 'Energy Availability (%)' THEN energy_availability
+				WHEN 'Manufacturer Producible (kW)' THEN manufacturer_producible
+				WHEN 'Historical Producible (kW)' THEN historical_producible
+				WHEN 'Angle Deviation (°)' THEN angle_deviation
+				WHEN 'Pitch Angle Average (°)' THEN pitch_angle_average
+				WHEN 'Controller Hub Temperature (°C)' THEN controller_hubtemperature
+				WHEN 'Gearbox HS Generator End Bearing Temperature (°C)' THEN gear_bearinghsgeneratorendtemperature
+				WHEN 'Gearbox Bearing HS Rotor End Temperature (°C)' THEN gear_bearinghsrotorendtemperature
+				WHEN 'Generator Bearing 2 Temperature (°C)' THEN generator_bearing2temperature
+				WHEN 'Generator Cooling Water Temperature (°C)' THEN generator_coolingwatertemperature
+				WHEN 'HVTrafo Phase 3 Temperature (°C)' THEN hvtrafo_phase3temperature
+				WHEN 'HVTrafo Phase 2 Temperature (°C)' THEN hvtrafo_phase2temperature
+				WHEN 'Nacelle Temperature (°C)' THEN nacelle_temperature
+                ELSE NULL
+            END AS value
+        FROM vis.oper_10min
+        WHERE timestamp BETWEEN @start_date AND @end_date
+    )
+    

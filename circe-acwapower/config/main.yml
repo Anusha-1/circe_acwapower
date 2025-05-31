@@ -1,0 +1,77 @@
+################################################################################
+######################### MAIN CONFIGURATION FILE ##############################
+################################################################################
+
+# This is the main configuration file for ACWA project
+
+# Configure logging
+log:
+  # (level)
+  # Level of logging. From less to more severe the levels are: DEBUG, INFO,
+  # WARNING, ERROR and CRITICAL
+  level: WARNING
+
+  # (file)
+  # Adds a filehandler to this path
+  file: 
+
+# (mode)
+# Two possible modes:
+#    - local: To be run in your local machine. If it needs credentials, it
+#         will look for them in config/credentials.yml. This file is 
+#         gitignored.
+#    - cloud: This is the option for when we need to run the code in the cloud
+#         It will log in through a Managed Identity to retrieve the 
+#         credentials at the Key Vault
+mode: cloud
+
+# Configure file storage system to use
+file_storage:
+
+  # (type)
+  # Type of file storage. Options are:
+  #     - Local: Save and read local files
+  #     - Azure: Save and read from Azure Storage Account
+  type: Azure
+
+  # (root_path) (for Local)
+  # Root path where we find the data. The folder structure is fixed inside the 
+  # path that we give here
+  root_path: ./
+
+  # (output path) 
+  # Root path to write results. Could be the same as root_path
+  output_path: ./
+
+
+# Configure database
+db:
+  # (type)
+  # Type of SQL database we are using. Options are:
+  #    - SQLite: Used for local development
+  #    - Azure: Used for Azure SQL Server
+  type: Azure
+
+  # (path) (for SQLite)
+  # Connection path to database
+  path: sqlite:///data/work/work.db
+
+  # (driver) (for Azure)
+  # Connection driver (needs to be installed in your computer)
+  driver: "{ODBC Driver 18 for SQL Server}"
+
+  # (server) (for Azure)
+  # Host server
+  server: gener-db.database.windows.net
+
+  # (database) (for Azure)
+  # Name of the database
+  database: awca
+
+# Configure KeyVault
+keyvault:
+
+  # (url)
+  # URL to Key Vault
+  url: https://awca.vault.azure.net/
+

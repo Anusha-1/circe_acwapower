@@ -1,0 +1,13 @@
+{
+    "disabled": true,
+    "bindings": [
+      {
+        "name": "myTimer",
+        "type": "timerTrigger",
+        "direction": "in",
+        "schedule": "0 2,12,22,32,42,52 * * * *",
+        "runOnStartup": false
+      }
+    ]
+  }
+  

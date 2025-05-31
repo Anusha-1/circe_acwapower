@@ -1,0 +1,19 @@
+{
+
+    "logging": {
+      "logLevel": {
+        "Function": "Information",
+        "default": "Information"
+      }
+    },
+    "bindings": [
+      {
+        "name": "myTimer",
+        "type": "timerTrigger",
+        "direction": "in",
+        "schedule": "0 0 0 * * *",
+        "runOnStartup": false
+      }
+    ]
+  }
+  

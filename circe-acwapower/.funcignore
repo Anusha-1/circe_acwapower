@@ -1,0 +1,28 @@
+.git*
+.vscode
+__azurite_db*__.json
+__blobstorage__
+__queuestorage__
+local.settings.json
+test
+.venv
+
+# Data
+data/*
+
+# Credentials and update
+config/credentials.yml
+config/update.yml
+
+# Docs
+docs/*
+
+# Notebooks
+notebooks/*
+
+dist/*
+
+poetry.lock
+mkdocs.yml
+pyproject.toml
+README.md
